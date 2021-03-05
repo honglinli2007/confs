@@ -5,3 +5,5 @@ cd tmux-3.1b
 ./configure --prefix=/opt/tmux
 make
 make install
+cd ..
+rm -rf tmux-3.1b
