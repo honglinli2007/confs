@@ -1,0 +1,10 @@
+
+alias tmux="tmux -2"
+export EDITOR=vim
+alias cdrpm="cd /data/rpmbuild/RPMS/x86_64"
+alias bker="HOME=/data ./generate-rpms.sh  -j20 -t"
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+PATH=$PATH:/opt/tmux/bin:/opt/nvim/bin:/opt/qemu-5.0.0/bin
+
+export PATH="$PATH:$HOME/.ft"
