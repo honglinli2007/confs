@@ -8,3 +8,4 @@ export LC_ALL=en_US.UTF-8
 PATH=$PATH:/opt/tmux/bin:/opt/nvim/usr/bin/:/opt/qemu-5.0.0/bin
 
 export PATH="$PATH:$HOME/.ft"
+alias ggg="scl enable devtoolset-8 zsh"
