@@ -16,7 +16,8 @@ Plug 'MattesGroeger/vim-bookmarks'
 "Solid syntax and indentation
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/bufexplorer.zip'
-Plug 'inkarkat/vim-mark'
+Plug 'inkarkat/vim-ingo-library'
+Plug 'inkarkat/vim-mark', {'branch': 'stable'}
 Plug 'mbbill/undotree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -274,6 +275,6 @@ set shortmess+=c
 """"""""""""
 "inkarkat/vim-mark
 let g:mw_no_mappings = 1
-nnoremap <Leader><Leader>n <Plug>MarkClear
-nnoremap <Leader><Leader>m <Plug>MarkSet
+nmap <Leader><Leader>n <Plug>MarkClear
+nmap <Leader><Leader>m <Plug>MarkSet
 nmap <Leader><Leader>M <Plug>MarkToggle
