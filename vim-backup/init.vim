@@ -16,12 +16,14 @@ Plug 'MattesGroeger/vim-bookmarks'
 "Solid syntax and indentation
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/bufexplorer.zip'
-Plug 'vim-scripts/Mark--Karkat'
+Plug 'inkarkat/vim-mark'
 Plug 'mbbill/undotree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/tagbar'
 Plug 'skywind3000/vim-auto-popmenu'
+Plug 'inkarkat/vim-ShowTrailingWhitespace'
+Plug 'mhinz/vim-startify'
 
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
@@ -235,7 +237,7 @@ nnoremap <leader><leader>vg :vimgrep  /<C-R>=expand("<cword>")<CR>/j %<cr>
 "Fzf vim
 
 nnoremap <c-p> :Files<cr>
-nnoremap <M-t> :Tags<cr>
+nnoremap <M-t> :BTags<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "book mark plugin
@@ -268,4 +270,10 @@ set completeopt=menu,menuone,noselect
 
 " suppress annoy messages.
 set shortmess+=c
+
 """"""""""""
+"inkarkat/vim-mark
+let g:mw_no_mappings = 1
+nnoremap <Leader><Leader>n <Plug>MarkClear
+nnoremap <Leader><Leader>m <Plug>MarkSet
+nmap <Leader><Leader>M <Plug>MarkToggle
