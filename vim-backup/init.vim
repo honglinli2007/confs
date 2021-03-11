@@ -5,7 +5,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 
 "This plug-in provides automatic closing of quotes, parenthesis, brackets, etc.,
-Plug 'Raimondi/delimitMate'
+"Plug 'Raimondi/delimitMate'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -25,6 +25,9 @@ Plug 'preservim/tagbar'
 Plug 'skywind3000/vim-auto-popmenu'
 Plug 'inkarkat/vim-ShowTrailingWhitespace'
 Plug 'mhinz/vim-startify'
+Plug 'jiangmiao/auto-pairs'
+Plug 'mg979/vim-xtabline'
+Plug 'RRethy/vim-illuminate'
 
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
@@ -126,7 +129,7 @@ augroup Shebang
 augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "NERDTree https://github.com/scrooloose/nerdtree
-map <M-n> :NERDTreeToggle<CR>
+map <F2> :NERDTreeToggle<CR>
 let g:NERDTreeWinPos = "right"
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
@@ -189,12 +192,54 @@ set shell=zsh
 "tmap <esc><esc> <c-w>:bp\|bd! #<cr>
 tnoremap <ESC> <c-\><c-n>
 nnoremap <F9> <c-w>w
-tmap <F9> <c-\><c-n><c-w>
 
 "run current file
-nnoremap <leader><F5> :!%:p<cr>
 nnoremap <leader><leader><F5> :'<,'>w !
-nnoremap <leader><F6> :!gedit %:p<cr>
+noremap  <F5> :call CompileRunGcc()<CR>
+func! CompileRunGcc()
+	exec "w"
+	if &filetype == 'c'
+		set splitbelow
+		exec "!gcc % -o %<"
+		:sp
+		:res -15
+		:term ./%<
+	elseif &filetype == 'cpp'
+		set splitbelow
+		exec "!g++ -std=c++11 % -Wall -o %<"
+		:sp
+		:res -15
+		:term ./%<
+	elseif &filetype == 'java'
+		exec "!javac %"
+		exec "!time java %<"
+	elseif &filetype == 'sh'
+		:!time bash %
+	elseif &filetype == 'python'
+		set splitbelow
+		:sp
+		:term python3 %
+	elseif &filetype == 'html'
+		silent! exec "!".g:mkdp_browser." % &"
+	elseif &filetype == 'markdown'
+		exec "InstantMarkdownPreview"
+	elseif &filetype == 'tex'
+		silent! exec "VimtexStop"
+		silent! exec "VimtexCompile"
+	elseif &filetype == 'dart'
+		exec "CocCommand flutter.run -d ".g:flutter_default_device." ".g:flutter_run_args
+		silent! exec "CocCommand flutter.dev.openDevLog"
+	elseif &filetype == 'javascript'
+		set splitbelow
+		:sp
+		:term export DEBUG="INFO,ERROR,WARNING"; node --trace-warnings .
+	elseif &filetype == 'go'
+		set splitbelow
+		:sp
+		:term go run .
+	endif
+endfunc
+
 
 nnoremap <leader>j <c-w>w
 nnoremap <leader>l :w<cr>
@@ -255,7 +300,7 @@ nmap <Leader>mk <Plug>BookmarkPrev
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "tagbar
-nnoremap <M-b> :TagbarToggle<cr>
+nnoremap <F3> :TagbarToggle<cr>
 let g:tagbar_autoclose = 1
 
 """"""""""""
@@ -278,3 +323,18 @@ let g:mw_no_mappings = 1
 nmap <Leader><Leader>n <Plug>MarkClear
 nmap <Leader><Leader>m <Plug>MarkSet
 nmap <Leader><Leader>M <Plug>MarkToggle
+
+""""""""
+"auto-pairs
+let g:AutoPairsFlyMode = 1
+
+""""""""""""""""
+"xtabline
+let g:xtabline_settings = {}
+let g:xtabline_settings.enable_mappings = 0
+let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
+let g:xtabline_settings.enable_persistance = 0
+let g:xtabline_settings.last_open_first = 1
+noremap \p :echo expand('%:p')<CR>
+
+
