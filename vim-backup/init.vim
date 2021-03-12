@@ -28,6 +28,8 @@ Plug 'mhinz/vim-startify'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mg979/vim-xtabline'
 Plug 'RRethy/vim-illuminate'
+Plug 'pechorin/any-jump.vim'
+Plug 'mileszs/ack.vim'
 
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
@@ -300,7 +302,7 @@ nmap <Leader>mk <Plug>BookmarkPrev
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "tagbar
-nnoremap <F3> :TagbarToggle<cr>
+nnoremap <Leader><F3> :TagbarToggle<cr>
 let g:tagbar_autoclose = 1
 
 """"""""""""
@@ -338,3 +340,6 @@ let g:xtabline_settings.last_open_first = 1
 noremap \p :echo expand('%:p')<CR>
 
 
+""""""""""""""""""""""""""
+"any-jump
+let g:any_jump_disable_default_keybindings = 1
