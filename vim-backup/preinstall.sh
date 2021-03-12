@@ -10,3 +10,4 @@ then
 fi
 
 mv squashfs-root/ /opt/nvim
+ln -sf $target_dir/usr/bin/nvim $target_dir/usr/bin/vim
